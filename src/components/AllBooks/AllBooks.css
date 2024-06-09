@@ -1,0 +1,41 @@
+.display-all-books {
+    display: grid;
+    width: 88%;
+    margin-top: 6%;
+    margin-left: 6%;
+    grid-template-columns: repeat(auto-fill, 20%);
+    justify-content: space-around;
+    grid-gap: 1%;
+  }
+  
+  /* Media Queries for Responsive Design */
+  @media only screen and (min-width: 481px) and (max-width: 768px) {
+    .display-all-books {
+      width: 88%;
+      margin-top: 10%;
+      margin-left: 6%;
+      grid-template-columns: repeat(auto-fill, 45%);
+      grid-gap: 3%;
+    }
+  }
+  
+  @media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .display-all-books {
+      width: 85%;
+      margin-top: 10%;
+      margin-left: 6%;
+      grid-template-columns: repeat(auto-fill, 25%);
+      grid-gap: 2%;
+    }
+  }
+  
+  @media only screen and (min-width: 320px) and (max-width: 480px) {
+    .display-all-books {
+      width: 80%;
+      grid-template-columns: repeat(auto-fill, 70%);
+      grid-gap: 1%;
+      margin-top: 10%;
+      justify-content: center;
+    }
+  }
+  
