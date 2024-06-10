@@ -1,51 +1,27 @@
-import React, { useState } from "react";
+import React from 'react';
 import Header from "../Header/Header";
-import "./DashBoard.css";
-import Allbooks from "../AllBooks/AllBooks";
-import Bookview from "../BookView/BookView";
-import Footer from "../Footer/Footer";
+import CopyrightOutlinedIcon from "@mui/icons-material/CopyrightOutlined";
+import { Outlet } from "react-router-dom";
+import './DashBoard.css'; 
 
-function Dashboard() {
-  const [viewBook, setViewBook] = useState(false);
-  const [selectedBook, setSelectedBook] = useState("hello");
-
-  const bookView = (book) => {
-    setSelectedBook(book);
-    setViewBook(true);
-  };
-  const [searchInput, setSearchInput] = useState("");
-  const [showSearch, setShowSearch] = useState(false);
-
-  if (viewBook) {
-    return <Bookview book={selectedBook} />;
-  }
+function DashBoard() {
   return (
     <>
-      <Header
-        searchInput={searchInput}
-        setSearchInput={setSearchInput}
-        setShowSearch={setShowSearch}
-      />
-      
-      <div className="mainContainer">
-        <div className="change-display change-display-left">
-          <span className="BooksText">Books </span>
-          <span className="book-count">(128 items)</span>
-        </div>
-        <div className="change-display change-display-right">
-          <select className="sort-by">
-            <option value="volvo">Sort by relevance</option>
-          </select>
-        </div>
+      <div className="Header-container">
+        <Header />
       </div>
-      <Allbooks
-        bookView={bookView}
-        searchInput={searchInput}
-        showSearch={showSearch}
-      />
-      <Footer />
+      <div className="content-container">
+        <Outlet />
+      </div>
+      <div className="footer-container">
+        <footer>
+          <p className="footer-text">
+            Copyright <CopyrightOutlinedIcon style={{ fontSize: "12px" }} /> 2020, Bookstore Private Limited. All Rights Reserved
+          </p>
+        </footer>
+      </div>
     </>
   );
 }
 
-export default Dashboard;
+export default DashBoard;

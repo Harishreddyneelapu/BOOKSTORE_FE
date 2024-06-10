@@ -1,52 +1,30 @@
-.mainContainer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: absolute;
-    top: 85px;
-    width: 96%;
-    margin-left: 2%;
-    
-    
-  }
-  .BooksText{
-    font-size: 2rem;
-  }
-  
-  @media only screen and (min-width: 320px) and (max-width: 480px) {
-    .mainContainer {
-      top: 58px;
-      width: 87%;
-      justify-content: center;
-    }
-  }
-  
-  @media only screen and (min-width: 481px) and (max-width: 899px) {
-    .mainContainer {
-      top: 70px;
-    }
-  }
-  
-  .change-display {
-    display: inline-block;
-    /* margin-left: 8%;
-    margin-right: 8%; */
-  }
-  
-  .Books {
-    font-size: 1.2em;
-    font-weight: 500;
-  }
-  
-  .book-count {
-    font-size: 0.7rem;
-  }
-  
-  .change-display-left {
-    margin-left: 6%;
-  }
-  
-  .change-display-right {
-    margin-right: 6%;
-  }
-  
+.Header-container {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.content-container {
+  flex-grow: 1;
+  min-height: calc(100vh - 100px);
+}
+
+.footer-container {
+  display: flex;
+  height: 50px;
+  width: 100%;
+  align-items: center;
+  background-color: #2E1D1E;
+  position: absolute;
+}
+
+.footer-text {
+  color: white;
+  font-size: 12px;
+  position: relative;
+  left: 160px;
+}
+
+/* .footer-icon {
+  font-size: 10px;
+} */

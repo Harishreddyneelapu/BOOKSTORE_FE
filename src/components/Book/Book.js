@@ -1,38 +1,38 @@
-import React from "react";
-import Box from "@mui/material/Box";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import "./Book.css";
-import BookImage from "../../assets/bookimage.png";
-import Star from "@mui/icons-material/StarBorderPurple500Sharp";
+import React from 'react';
+import StarIcon from '@mui/icons-material/Star';
+import { Link } from 'react-router-dom';
+import BookImage from '../../assets/bookimage.png'
 
-function Book({ book, bookView }) {
-  return (
-    <Card className="mainContainer-card">
-      <CardContent className="contentClass">
-        <Box className="BookBox">
-          <img
-            src={BookImage}
-            alt="Book not found"
-            className="book-image"
-            onClick={() => bookView(book)}
-          />
-        </Box>
-        <Box className="book-name-class bookNameClass">{book.bookName}</Box>
-        <Box className="book-name-class book-author-class">{book.author}</Box>
-        <Box className="book-name-class book ratingBox">
-          <Box className="greenBox">
-            4.5<Star fontSize="1rem" className="star-symbol" />
-          </Box>
-          <span className="ratingCount">(20)</span>
-        </Box>
-        <Box className="book-name-class priceBox">
-          <span>Rs. {book.discountPrice} </span>
-          <span className="priceBox1">Rs. {book.price}</span>
-        </Box>
-      </CardContent>
-    </Card>
-  );
+import './Book.css';
+
+function Book({ book }) {
+    
+
+    return (
+        <Link to={`/dashboard/bookView/${book._id}`} className="book-card-link-card">
+            <div className="book-card-card">
+                <div className="book-image-container-card">
+                    <img src={BookImage} className="book-image-card" alt={book.bookName} />
+                </div>
+                <div className="book-info-card">
+                    <span style={{color:'black'}} className="book-name-card">{book.bookName}</span>
+                    <span className="book-author-card">{book.author}</span>
+                    <div className="book-rating-card">
+                        <div className="rating-box-card">
+                            <span className="rating-value-card">4.5</span>
+                            <StarIcon className="rating-icon-card" />
+                        </div>
+                        <span className="book-quantity-card">({book.quantity})</span>
+                    </div>
+                    <div className="book-pricing-card">
+                        <span className="discount-price-card">Rs. {book.discountPrice}</span>
+                        <span className="original-price-card">Rs. {book.price}</span>
+                    </div>
+                </div>
+            </div>
+        </Link>
+    );
 }
 
 export default Book;
+
