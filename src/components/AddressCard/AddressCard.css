@@ -1,0 +1,50 @@
+.address-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .address-type-select {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .address-type-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .address-new-form {
+    width: 80%;
+    margin-top: 20px;
+  }
+  
+  .address-edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .address-field {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .address-input {
+    background-color: #F5F5F5;
+    border-radius: 4px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    margin-top: 5px;
+  }
+  
+  .address-city-state {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+  

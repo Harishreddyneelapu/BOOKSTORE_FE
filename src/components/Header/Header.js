@@ -4,7 +4,7 @@ import educationlogo from "../../assets/bookLogo.png";
 import SearchIcon from "@mui/icons-material/Search";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import AddShoppingCartOutlinedIcon from "@mui/icons-material/AddShoppingCartOutlined";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+// import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
 
 function Header() {
@@ -31,10 +31,10 @@ function Header() {
           <Person2OutlinedIcon />
           <span>Profile</span>
         </div>
-        <div className="header-icon" onClick={() => navigate("/wishlist")}>
+        {/* <div className="header-icon" onClick={() => navigate("/wishlist")}>
           <FavoriteIcon />
           <span>Wishlist</span>
-        </div>
+        </div> */}
         <div className="header-icon" onClick={() => navigate("/cart")}>
           <AddShoppingCartOutlinedIcon />
           <span>Cart</span>

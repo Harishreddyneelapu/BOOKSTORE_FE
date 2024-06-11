@@ -9,7 +9,22 @@ export const getAllBooksApiCall = async () => {
   return res;
 }
 
-export const getBookByIdApiCall = async (_id)=>{
+export const getBookByIdApiCall = async (_id) => {
   const res = await axios.get(`http://localhost:3000/api/books/${_id}`, { headers: config });
+  return res;
+}
+
+export const getCartDetailsApiCall = async () => {
+  const res = await axios.get("http://localhost:3000/api/cart", { headers: config });
+  return res;
+}
+
+export const getAddressDetailsApiCall = async () => {
+  const res = await axios.post("http://localhost:3000/api/customer", "", { headers: config });
+  return res;
+}
+
+export const getOrderDetailsApiCall = async () => {
+  const res = await axios.post("http://localhost:3000/api/order", "", { headers: config });
   return res;
 }

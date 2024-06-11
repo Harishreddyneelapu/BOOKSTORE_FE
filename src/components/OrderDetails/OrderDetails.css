@@ -1,0 +1,56 @@
+.order-container {
+    display: flex;
+    gap: 10px;
+    width: 800px;
+    height: 170px;
+    font-family: Roboto, sans-serif;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.order-image {
+    width: 80px;
+    height: 100px;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.order-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 600px;
+    margin-left: 10px;
+}
+
+.order-title {
+    display: flex;
+    margin-top: 20px;
+}
+
+.order-book-name {
+    font-weight: 500;
+}
+
+.order-author {
+    color: #878787;
+    font-size: 14px;
+    text-align: start;
+}
+
+.order-pricing {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.order-discount-price {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.order-original-price {
+    text-decoration: line-through;
+    font-size: 12px;
+    color: #878787;
+}

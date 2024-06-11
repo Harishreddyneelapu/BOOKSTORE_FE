@@ -75,9 +75,10 @@ function BookView() {
                             <span className="original-price">Rs. {bookData.price}</span>
                         </div>
                         <div className="separator" />
-                        <ul className="book-details-list">
+                        {/* <ul className="book-details-list">
                             <li>Book Detail</li>
-                        </ul>
+                        </ul> */}
+                        <div className='book-details-list'>Book Detail</div>
                         <p className="book-description">
                             Since Don’t Make Me Think was first published in 2000, hundreds of
                             thousands of Web designers and developers have relied on usability
@@ -106,7 +107,7 @@ function BookView() {
                                 <StarBorderIcon className="star-outline" />
                             </div>
                             <div className="comment-box">
-                                <input
+                                <textarea
                                     type="text"
                                     className="comment-input"
                                     placeholder="Write your review"

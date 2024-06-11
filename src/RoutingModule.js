@@ -4,6 +4,7 @@ import Header from './components/Header/Header';
 import DashBoard from './components/DashBoard/DashBoard';
 import AllBooks from './components/AllBooks/AllBooks'
 import Bookview from './components/BookView/BookView';
+import BookStoreCart from './components/BookStoreCart/BookStoreCart';
 
 
 function RoutingModule(){
@@ -12,7 +13,9 @@ function RoutingModule(){
         {path:"/header",element:<Header/>},
         {path:"/dashboard", element:<DashBoard/>, children:[
             {path:"allBooks",element:<AllBooks/>},
-            {path : "bookView/:bookId" , element : <Bookview/>}
+            {path : "bookView/:bookId" , element : <Bookview/>},
+            {path : "bookCart" , element : <BookStoreCart/>}
+
         ]},
     ])
     return <RouterProvider router={AppRoutes}></RouterProvider>

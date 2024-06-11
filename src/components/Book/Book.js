@@ -20,7 +20,7 @@ function Book({ book }) {
                     <div className="book-rating-card">
                         <div className="rating-box-card">
                             <span className="rating-value-card">4.5</span>
-                            <StarIcon className="rating-icon-card" />
+                            <StarIcon className="rating-icon-card-gsi" style={{height : "14px" , color : "white"}} />
                         </div>
                         <span className="book-quantity-card">({book.quantity})</span>
                     </div>
