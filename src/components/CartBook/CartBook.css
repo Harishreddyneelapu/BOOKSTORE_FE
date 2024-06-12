@@ -8,25 +8,26 @@
   .cart-book-card {
     display: flex;
     gap: 10px;
-    width: 890px;
-    height: 190px;
+    width:890px;
+    height: 150px;
     font-family: Roboto, sans-serif;
     align-items: center;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     padding: 10px;
-    border-radius: 5px;
+    /* border-radius: 5px; */
   }
   
   .cart-book-img {
     width: 80px;
     height: 100px;
     margin: 20px;
+    margin-top: 0px;
   }
   
   .cart-book-details {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    /* gap: 10px; */
     width: 600px;
   }
   
@@ -34,17 +35,21 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 20px;
+    /* margin-top: 20px; */
   }
   
   .cart-book-title {
     font-weight: bold;
     font-size: 18px;
+    margin-top: 2px;
+    margin-bottom: 2px;
   }
   
   .cart-book-author {
     color: #878787;
     font-size: 14px;
+    margin-top: 2px;
+    margin-bottom: 2px;
   }
   
   .cart-book-pricing {
@@ -56,12 +61,15 @@
   .cart-book-discount-price {
     font-size: 18px;
     font-weight: bold;
+    margin-top: 3px;
+    margin-bottom: 3px;
   }
   
   .cart-book-price {
     text-decoration: line-through;
     color: #878787;
     font-size: 12px;
+    
   }
   
   .cart-book-actions {
