@@ -1,0 +1,81 @@
+.success-success-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0px;
+}
+
+.success-popper-head {
+    width: 200px;
+    margin-top: 50px;
+}
+
+.success-success-title {
+    font-size: 24px;
+    color: #333232;
+    font-weight: 600;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.success-popper-foot {
+    width: 120px;
+}
+
+.success-success-message {
+    width: 355px;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.success-success-highlight {
+    font-weight: 600;
+}
+
+.success-contact-table {
+    width: 780px;
+    border-collapse: collapse;
+}
+
+.success-contact-header {
+    background-color: #DCDCDC;
+    height: 42px;
+}
+
+.success-contact-header th {
+    font-weight: 400;
+}
+
+.success-contact-email, .success-contact-phone, .success-contact-address {
+    width: 200px;
+    text-align: center;
+    border: 1px solid #000;
+}
+
+.success-contact-address {
+    text-align: left;
+    padding: 0 8px;
+}
+
+.success-contact-email-data, .success-contact-phone-data, .success-contact-address-data {
+    border: 1px solid #000;
+    text-align: center;
+}
+
+.success-contact-address-data {
+    text-align: left;
+    padding: 0 8px;
+}
+
+.success-continue-button {
+    background-color: #3371B5;
+    color: white;
+    width: 200px;
+    height: 35px;
+    text-align: center;
+    padding-top: 8px;
+    text-decoration: none;
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}

@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: row;
     text-align: left;
-    margin-left: 22px;
+    margin-left: 57px;
     margin-top: 10px;
 
   }
@@ -33,12 +33,13 @@
     width: 737px;
     gap: 8px;
     margin-bottom: 20px;
+    margin-left: 57px;
   }
   
   .address-field {
     display: flex;
     flex-direction: column;
-    margin-left: 22px;
+    /* margin-left: 22px; */
   }
   
   .address-input {

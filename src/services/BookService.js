@@ -28,3 +28,8 @@ export const getOrderDetailsApiCall = async () => {
   const res = await axios.post("http://localhost:3000/api/order", "", { headers: config });
   return res;
 }
+
+export const getWishListDetailsApiCall = async () => {
+  const res = await axios.get("http://localhost:3000/api/wishlist", { headers: config });
+  return res;
+}
