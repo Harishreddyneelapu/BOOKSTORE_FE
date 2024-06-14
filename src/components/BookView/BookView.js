@@ -1,25 +1,84 @@
 import React, { useEffect, useState } from 'react';
-import { Button } from '@mui/material';
+import { Button, IconButton } from '@mui/material';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import BookImage from '../../assets/bookimage.png';
-import { getBookByIdApiCall } from '../../services/BookService';
+import { AddCircleOutline, Favorite, RemoveCircleOutline } from '@mui/icons-material';
+import { addCartList, addWishList, getBookByIdApiCall, updateCartList } from '../../services/BookService';
 import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
-
-
 import './BookView.css';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addItemToCart, updateCartQuantity } from '../../utils/store/CartSlice';
+import { addItemToWishList } from '../../utils/store/WishListSlice';
 
 function BookView() {
     const [bookData, setBookData] = useState({});
+    const [addToBag, setAddToBag] = useState(false);
+    const [wishList, setWishList] = useState(false)
     const navigate = useNavigate()
+    const [quantityToBuy, setQuantityToBuy] = useState(1);
+    const dispatch = useDispatch()
+
+    const cartList = useSelector((store) => store.cart.cartItems)
+    const wishListList = useSelector((store) => store.wishList.wishListItems)
 
     const BookId = useParams();
     console.log(BookId.bookId);
 
     const navigateToBooks = () => {
         navigate("/dashboard/allBooks")
+    }
+    const addToCart = async () => {
+        const newCartItems = await addCartList(BookId.bookId);
+        console.log(newCartItems)
+        dispatch(addItemToCart({ ...bookData, quantityToBuy: 1 }))
+        setAddToBag(true)
+    };
+
+    const incrementCartQuantity = async () => {
+        const cartData = cartList.filter((book) => book._id === BookId.bookId);
+        console.log(cartData);
+        const updateCart = await updateCartList(cartData._id, quantityToBuy + 1)
+        console.log(updateCart);
+        dispatch(updateCartQuantity({ ...bookData, quantityToBuy: quantityToBuy + 1 }))
+
+        setQuantityToBuy(quantityToBuy + 1)
+
+    };
+
+    const decrementCartQuantity = async () => {
+        const cartData = cartList.filter((book) => book._id === BookId.bookId)[0]
+        if (quantityToBuy === 1) {
+            setAddToBag(false)
+            return
+        }
+        const updateCart = await updateCartList(cartData._id, quantityToBuy - 1)
+        console.log(updateCart);
+        dispatch(updateCartQuantity({ ...bookData, quantityToBuy: quantityToBuy - 1 }))
+
+        setQuantityToBuy(quantityToBuy - 1)
+    };
+
+    const handleWishList = () => {
+        addWishList(BookId.bookId);
+        dispatch(addItemToWishList({ ...bookData }));
+        console.log(bookData);
+        setWishList(!wishList);
+    };
+
+    function checkBook(bookId) {
+        const indexCart = cartList.filter((book) => book._id === bookId);
+        const indexWishList = wishListList.filter((book) => book._id === bookId)
+        if (indexCart.length !== 0) {
+            setAddToBag(true);
+            setQuantityToBuy(indexCart[0].quantityToBuy);
+        }
+        if (indexWishList.length !== 0) {
+            setWishList(true);
+        }
+
     }
     useEffect(() => {
         const getBooks = async () => {
@@ -32,6 +91,7 @@ function BookView() {
             }
         };
         getBooks();
+        checkBook(BookId.bookId);
     }, [BookId.bookId]);
     return (
         <div className="container">
@@ -52,11 +112,36 @@ function BookView() {
                         <img src={BookImage} alt="Book Main" />
                     </div>
                     <div className="actions">
-                        <button className="add-to-cart">ADD TO CART</button>
-                        <button className="wishlist">
-                            <FavoriteIcon className="wishlist-icon" />
-                            <span className='wishlist-title-in-button'>WISHLIST</span> 
-                        </button>
+                        {addToBag ? (
+                            <div className="cart-quantity-container">
+                                <IconButton onClick={decrementCartQuantity}>
+                                    <RemoveCircleOutline fontSize="medium" />
+                                </IconButton>
+
+                                <div className="cart-quantity">
+                                    {quantityToBuy}
+                                </div>
+
+                                <IconButton onClick={incrementCartQuantity}>
+                                    <AddCircleOutline fontSize="medium" />
+                                </IconButton>
+                            </div>
+                        ) : (
+                            <button className="add-to-cart" onClick={addToCart}>ADD TO CART</button>
+                        )}
+                        {wishList ? (
+                            <div className="wishlist-added">
+                                <div className="wishlist-added-content">
+                                    <Favorite sx={{ color: "red" }} />
+                                    Added to Wishlist!
+                                </div>
+                            </div>
+                        ) : (
+                            <button className="wishlist-button" onClick={handleWishList}>
+                                <FavoriteIcon className="wishlist-icon" />
+                                <span className="wishlist-title">WISHLIST</span>
+                            </button>
+                        )}
                     </div>
                 </div>
                 <div className="info-section">

@@ -1,46 +1,29 @@
-// import { useEffect, useState } from "react";
-// import { getCartDetailsApiCall } from "../../services/BookService";
-
-// function BookStoreCart(){
-//     const [cartBookList, setCartBookList]=useState([]);
-//     useEffect(() => {
-//         const getAllBooksFromCart = async () => {
-//           let response = await getCartDetailsApiCall();
-//           setCartBookList(response.data.data);
-//         };
-//         getAllBooksFromCart();
-//       }, []);
-// }
-
-// export default BookStoreCart;
-
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import CartBook from "../CartBook/CartBook";
 import { Accordion, AccordionDetails, AccordionSummary, Button, Modal } from "@mui/material";
 import AddressCard from "../AddressCard/AddressCard";
 import OrderDetails from "../OrderDetails/OrderDetails";
-// import LoginOrSignUp from "./LoginOrSignUp";
-// import { getCartDetailsApiCall } from "";
 import './BookStoreCart.css';
 import { getCartDetailsApiCall } from "../../services/BookService";
+import { useDispatch, useSelector } from "react-redux";
 
 function BookStoreCart() {
-    // const [cartBookName, setCartBookName] = useState({});
-    const [cartBookList, setCartBookList] = useState([]);
+    const dispatch = useDispatch();
+    const cartItems = useSelector((store) => store.cart.cartItems);
+    // const [cartBookList, setCartBookList] = useState([]);
     const [expanded, setExpanded] = useState(false);
     const [expanded2, setExpanded2] = useState(false);
     //   const [profile, setProfile] = useState(false);
     //   const navigate = useNavigate();
 
-    useEffect(() => {
-        const getAllBooksFromCart = async () => {
-            let response = await getCartDetailsApiCall();
-            //   setCartBookName(response.data.data)
-            setCartBookList(response.data.data.books);
-        };
-        getAllBooksFromCart();
-    }, []);
+    // useEffect(() => {
+    //     const getAllBooksFromCart = async () => {
+    //         let response = await getCartDetailsApiCall();
+    //         setCartBookList(response.data.data.books);
+    //     };
+    //     getAllBooksFromCart();
+    // }, []);
 
     const placeOrder = () => {
         // if (localStorage.getItem("accessToken")) {
@@ -63,11 +46,11 @@ function BookStoreCart() {
                     <span> My Cart</span>
                 </div>
                 <div className="cart-box">
-                    <div className="cart-header">My cart ({cartBookList.length})</div>
+                    <div className="cart-header">My cart ({cartItems.length})</div>
                     <div className="cart-items">
                         <div className="cart-items-cartBook">
-                            {cartBookList.length ? (
-                                cartBookList.map((book, index) => (
+                            {cartItems.length ? (
+                                cartItems.map((book, index) => (
                                     <CartBook key={index} book={book} index={index} />
                                 ))
                             ) : (
@@ -75,7 +58,7 @@ function BookStoreCart() {
                             )}
                         </div>
 
-                        <div className={cartBookList.length && !expanded ? "cart-place-order" : "hidden"}>
+                        <div className={cartItems.length && !expanded ? "cart-place-order" : "hidden"}>
                             <Button variant="contained" className="cart-place-order-button" onClick={placeOrder}>
                                 Place order
                             </Button>
@@ -83,7 +66,7 @@ function BookStoreCart() {
                     </div>
                 </div>
                 <Accordion expanded={expanded} className="cart-accordion">
-                    <AccordionSummary className="cart-accordion-summary">
+                    <AccordionSummary className="cart-accordion-summary" >
                         Customer Details
                     </AccordionSummary>
                     <AccordionDetails>
@@ -114,8 +97,8 @@ function BookStoreCart() {
                     <AccordionDetails>
                         <div>
                             <div className="order-summary-cnt">
-                                {cartBookList.length ? (
-                                    cartBookList.map((book, index) => (
+                                {cartItems.length ? (
+                                    cartItems.map((book, index) => (
                                         <OrderDetails key={index} index={-1} book={book} />
                                     ))
                                 )

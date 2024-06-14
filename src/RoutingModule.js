@@ -1,6 +1,4 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Books from './components/AllBooks/AllBooks';
-import Header from './components/Header/Header';
 import DashBoard from './components/DashBoard/DashBoard';
 import AllBooks from './components/AllBooks/AllBooks'
 import Bookview from './components/BookView/BookView';
@@ -8,12 +6,14 @@ import BookStoreCart from './components/BookStoreCart/BookStoreCart';
 import OrderSuccess from './components/OrderSuccess/OrderSuccess';
 import MyOrders from './components/MyOrders/MyOrders';
 import WishList from './components/WishList/WishList';
+import { Provider } from 'react-redux';
+import appStore from './utils/store/AppStore';
 
 
 function RoutingModule() {
     const AppRoutes = createBrowserRouter([
-        { path: "/books", element: <Books /> },
-        { path: "/header", element: <Header /> },
+        // { path: "/books", element: <Books /> },
+        // { path: "/header", element: <Header /> },
         {
             path: "/dashboard", element: <DashBoard />, children: [
                 { path: "allBooks", element: <AllBooks /> },
@@ -26,7 +26,10 @@ function RoutingModule() {
             ]
         },
     ])
-    return <RouterProvider router={AppRoutes}></RouterProvider>
+    return <Provider store={appStore}>
+        <RouterProvider router={AppRoutes}></RouterProvider>
+    </Provider>
+    
 
 }
 

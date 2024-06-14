@@ -35,7 +35,7 @@ function Header() {
           <FavoriteIcon />
           <span>Wishlist</span>
         </div> */}
-        <div className="header-icon" onClick={() => navigate("/cart")}>
+        <div className="header-icon" onClick={() => navigate("/dashboard/bookCart")}>
           <AddShoppingCartOutlinedIcon />
           <span>Cart</span>
         </div>

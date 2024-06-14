@@ -1,35 +1,19 @@
-// import { useEffect, useState } from "react";
-// import { getWishListDetailsApiCall } from "../../services/BookService";
-
-// function WishList(){
-//     const [wishListDetails, setWishListDetails] = useState([]);
-//     useEffect(()=>{
-//         const getWishListDetails = async ()=>{
-//             const response = await getWishListDetailsApiCall();
-//             setWishListDetails(response.data.data.books)
-//         }
-//         getWishListDetails();
-//     },[])
-// }
-// export default WishList;
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { HeartBroken } from "@mui/icons-material";
 import WishListCard from "../WishListCard/WishListCard";
-import { getWishListDetailsApiCall } from "../../services/BookService";
+// import { getWishListDetailsApiCall } from "../../services/BookService";
 import './WishList.css';
+import { useSelector } from "react-redux";
 
 function WishList() {
-    const [wishListDetails, setWishListDetails] = useState([]);
+
+
+    const wishListItems = useSelector((store) => store.wishList.wishListItems);
 
     useEffect(() => {
-        const getWishListDetails = async () => {
-            const response = await getWishListDetailsApiCall();
-            setWishListDetails(response.data.data.books);
-        }
-        getWishListDetails();
-    }, []);
+
+    }, [wishListItems])
 
     return (
         <div className="wishlist-container">
@@ -42,11 +26,11 @@ function WishList() {
                 </div>
                 <div className="wishlist-list-container">
                     <div className="wishlist-header">
-                        My Wishlist ({wishListDetails.length})
+                        My Wishlist ({wishListItems.length})
                     </div>
                     <div className="wishlist-items">
-                        {wishListDetails.length ? (
-                            wishListDetails.map((book, index) => (
+                        {wishListItems.length ? (
+                            wishListItems.map((book, index) => (
                                 <WishListCard key={index} book={book} />
                             ))
                         ) : (
