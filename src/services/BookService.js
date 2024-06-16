@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const config = {
-  'Authorization': `Bearer ${localStorage.getItem('AuthToken')}`,
+  'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
 }
 
 export const getAllBooksApiCall = async () => {

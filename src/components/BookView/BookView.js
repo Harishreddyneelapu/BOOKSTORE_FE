@@ -20,12 +20,24 @@ function BookView() {
     const navigate = useNavigate()
     const [quantityToBuy, setQuantityToBuy] = useState(1);
     const dispatch = useDispatch()
+    const token = localStorage.getItem('accessToken')
 
     const cartList = useSelector((store) => store.cart.cartItems)
     const wishListList = useSelector((store) => store.wishList.wishListItems)
 
     const BookId = useParams();
     console.log(BookId.bookId);
+
+    const cartId = cartList?.filter((book) => book?._id === BookId.bookId)[0]
+    console.log(cartId);
+
+    const noTokenCartId = cartList?.filter((book) => book?._id === BookId.bookId)[0]
+    console.log(noTokenCartId);
+
+
+
+    const wishListId = wishListList?.filter((book) => book?._id === BookId.bookId)[0]
+    console.log(wishListId);
 
     const navigateToBooks = () => {
         navigate("/dashboard/allBooks")
@@ -40,8 +52,8 @@ function BookView() {
     const incrementCartQuantity = async () => {
         const cartData = cartList.filter((book) => book._id === BookId.bookId);
         console.log(cartData);
-        const updateCart = await updateCartList(cartData._id, quantityToBuy + 1)
-        console.log(updateCart);
+        // const updateCart = await updateCartList(cartData._id, quantityToBuy + 1)
+        // console.log(updateCart);
         dispatch(updateCartQuantity({ ...bookData, quantityToBuy: quantityToBuy + 1 }))
 
         setQuantityToBuy(quantityToBuy + 1)
@@ -54,8 +66,8 @@ function BookView() {
             setAddToBag(false)
             return
         }
-        const updateCart = await updateCartList(cartData._id, quantityToBuy - 1)
-        console.log(updateCart);
+        // const updateCart = await updateCartList(cartData._id, quantityToBuy - 1)
+        // console.log(updateCart);
         dispatch(updateCartQuantity({ ...bookData, quantityToBuy: quantityToBuy - 1 }))
 
         setQuantityToBuy(quantityToBuy - 1)
@@ -92,7 +104,7 @@ function BookView() {
         };
         getBooks();
         checkBook(BookId.bookId);
-    }, [BookId.bookId]);
+    }, [BookId.bookId, cartList, cartId, wishList, wishListId]);
     return (
         <div className="container">
             <div className="left-main-book">
@@ -121,6 +133,11 @@ function BookView() {
                                 <div className="cart-quantity">
                                     {quantityToBuy}
                                 </div>
+                                {token ? (<div className="cart-quantity">
+                                    {quantityToBuy}
+                                </div>) : (<div className="cart-quantity">
+                                    {quantityToBuy}
+                                </div>)}
 
                                 <IconButton onClick={incrementCartQuantity}>
                                     <AddCircleOutline fontSize="medium" />

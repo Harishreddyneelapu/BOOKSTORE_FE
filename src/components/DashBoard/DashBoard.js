@@ -3,12 +3,13 @@ import Header from "../Header/Header";
 import CopyrightOutlinedIcon from "@mui/icons-material/CopyrightOutlined";
 import { Outlet } from "react-router-dom";
 import './DashBoard.css'; 
+import BookNavBar from '../BookNavBar/BookNavBar';
 
 function DashBoard() {
   return (
     <>
       <div className="Header-container">
-        <Header />
+        <BookNavBar />
       </div>
       <div className="content-container">
         <Outlet />

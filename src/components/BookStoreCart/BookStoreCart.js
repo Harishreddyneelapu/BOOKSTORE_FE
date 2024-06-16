@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CartBook from "../CartBook/CartBook";
 import { Accordion, AccordionDetails, AccordionSummary, Button, Modal } from "@mui/material";
 import AddressCard from "../AddressCard/AddressCard";
@@ -7,14 +7,16 @@ import OrderDetails from "../OrderDetails/OrderDetails";
 import './BookStoreCart.css';
 import { getCartDetailsApiCall } from "../../services/BookService";
 import { useDispatch, useSelector } from "react-redux";
+import LoginOrSignUp from "../LoginOrSignUp/LoginOrSignUp";
 
 function BookStoreCart() {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const cartItems = useSelector((store) => store.cart.cartItems);
     // const [cartBookList, setCartBookList] = useState([]);
     const [expanded, setExpanded] = useState(false);
     const [expanded2, setExpanded2] = useState(false);
-    //   const [profile, setProfile] = useState(false);
+      const [profile, setProfile] = useState(false);
     //   const navigate = useNavigate();
 
     // useEffect(() => {
@@ -26,13 +28,16 @@ function BookStoreCart() {
     // }, []);
 
     const placeOrder = () => {
-        // if (localStorage.getItem("accessToken")) {
-        //   setExpanded(true);
-        // } else {
-        //   setProfile(true);
-        // }
-        setExpanded(true);
+        if (localStorage.getItem("accessToken")) {
+          setExpanded(true);
+        } else {
+          setProfile(true);
+        }
+        // setExpanded(true);
     };
+    const toOrders = ()=>{
+        navigate('/dashboard/allOrders');
+    }
 
     const orderAddress = () => {
         setExpanded2(true);
@@ -107,7 +112,7 @@ function BookStoreCart() {
                                     )}
                             </div>
                             <div className="cart-checkout">
-                                <Button variant="contained" className="cart-checkout-button">
+                                <Button variant="contained" className="cart-checkout-button" onClick={toOrders}>
                                     Checkout
                                 </Button>
                             </div>
@@ -115,9 +120,9 @@ function BookStoreCart() {
                     </AccordionDetails>
                 </Accordion>
             </div>
-            {/* <Modal open={profile} onClose={() => setProfile(false)}>
+            <Modal open={profile} onClose={() => setProfile(false)}>
         <LoginOrSignUp profile={profile} setProfile={setProfile} />
-      </Modal> */}
+      </Modal>
         </div>
     );
 }

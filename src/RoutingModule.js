@@ -8,12 +8,14 @@ import MyOrders from './components/MyOrders/MyOrders';
 import WishList from './components/WishList/WishList';
 import { Provider } from 'react-redux';
 import appStore from './utils/store/AppStore';
+import LoginOrSignUp from './components/LoginOrSignUp/LoginOrSignUp';
+import BookNavBar from './components/BookNavBar/BookNavBar';
 
 
 function RoutingModule() {
     const AppRoutes = createBrowserRouter([
-        // { path: "/books", element: <Books /> },
-        // { path: "/header", element: <Header /> },
+        { path: "/loginOrSignUp", element: <LoginOrSignUp /> },
+        { path: "/bookNavBar", element: <BookNavBar /> },
         {
             path: "/dashboard", element: <DashBoard />, children: [
                 { path: "allBooks", element: <AllBooks /> },

@@ -11,7 +11,9 @@ function CartBook({ book, index }) {
     const cartItems = useSelector((store) => store.cart.cartItems);
     const [quantityToBuy, setQuantityToBuy] = useState(1);
     const cartBook = cartItems.filter((cartbook) => cartbook._id === book._id)[0]
-    
+
+    const token = localStorage.getItem("accessToken")
+
     const removeItem = async () => {
         const res = await removeCartList(book._id);
         console.log(res);
@@ -19,16 +21,16 @@ function CartBook({ book, index }) {
     };
 
     const decrementQuantity = async () => {
-        const updateCart = await updateCartList(cartBook._id, quantityToBuy - 1)
-        console.log(updateCart);
+        // const updateCart = await updateCartList(cartBook._id, quantityToBuy - 1)
+        // console.log(updateCart);
         dispatch(updateCartQuantity({ ...cartBook, quantityToBuy: quantityToBuy - 1 }))
 
         setQuantityToBuy(quantityToBuy - 1)
     };
 
     const IncrementQuantity = async () => {
-        const updateCart = await updateCartList(cartBook._id, quantityToBuy + 1)
-        console.log(updateCart);
+        // const updateCart = await updateCartList(cartBook._id, quantityToBuy + 1)
+        // console.log(updateCart);
         dispatch(updateCartQuantity({ ...cartBook, quantityToBuy: quantityToBuy + 1 }))
 
         setQuantityToBuy(quantityToBuy + 1)
@@ -55,6 +57,12 @@ function CartBook({ book, index }) {
                             <button className="cart-book-btn" onClick={IncrementQuantity} disabled={book.quantityToBuy < book.quantity ? false : true}>
                                 <AddCircleOutline />
                             </button>
+
+                            {token ? (<button className="cart-book-btn" onClick={IncrementQuantity} disabled={book.quantityToBuy < book.quantity ? false : true}>
+                                <AddCircleOutline />
+                            </button>) : (<button className="cart-book-btn" onClick={IncrementQuantity} disabled={book.quantityToBuy < book.quantity ? false : true}>
+                                <AddCircleOutline />
+                            </button>)}
                         </div>
                         <div className="cart-book-remove">
                             <span onClick={removeItem}>Remove</span>

@@ -1,0 +1,160 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 88px;
+  }
+  
+  .inner-container {
+    display: flex;
+    align-items:center;
+    /* min-height: 250px; */
+    height: 350px;
+    width: 600px;
+    background-color: #f5f5f5;
+    margin-top: 30px;
+    border-radius: 20px;
+    /* padding: 0px; */
+  }
+  
+  .logo-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 245px;
+    width: 290px;
+    /* margin-left: 30px; */
+    /* margin-top: 12px; */
+    align-items: center;
+  }
+  
+  .logo-image {
+    border-radius: 50%;
+    width:80%
+  }
+  
+  .logo-text {
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 14px;
+  }
+  .signup-form{
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+  }
+  .login-form{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+  .form-section {
+    /* position: relative; */
+    top: 88px;
+    left: 400px;
+    display: flex;
+    flex-direction: row;
+    min-height: 410px;
+    width: 350px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px
+  }
+  
+  .form-container {
+    margin-top: 8%;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  
+  .form-header {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 5px;
+    gap: 55px;
+  }
+  
+  .form-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+  
+  .form-tab-text {
+    font-size: 23px;
+    font-weight: bold;
+    color: grey;
+  }
+  
+  .form-tab-text.active {
+    color: black;
+  }
+  
+  .form-tab-indicator {
+    width: 30px;
+    height: 6px;
+    background-color: #A03037;
+    border-radius: 8px;
+    margin-top: 5px;
+  }
+  
+  .input-field {
+    width: 90%;
+    height: 50px;
+    margin-top: 15px;
+  }
+  
+  .submit-button {
+    width: 80%;
+    margin-top: 3px;
+    background-color: #A03037;
+    align-items: center;
+  }
+  
+  .forgot-password {
+    font-size: 12px;
+    margin-left: 160px;
+    cursor: pointer;
+    text-align: right;
+    margin-right: 6%;
+  }
+  
+  .or-section {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    justify-content: center;
+    /* margin-top: 20px; */
+  }
+  
+  .divider {
+    width: 30%;
+    border: none;
+    height: 1px;
+    background-color: grey;
+    margin: 0 10px;
+  }
+  
+  .social-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    /* margin-top: 20px; */
+  }
+  
+  .facebook-button {
+    width: 100px;
+    background-color: #4266B2;
+    color: white;
+  }
+  
+  .google-button {
+    width: 100px;
+    background-color: #F5F5F5;
+    color: #0A0102;
+  }
+  
