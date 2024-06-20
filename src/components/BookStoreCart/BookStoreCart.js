@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import CartBook from "../CartBook/CartBook";
-import { Accordion, AccordionDetails, AccordionSummary, Button, Modal } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Button, Modal, Box } from "@mui/material";
 import AddressCard from "../AddressCard/AddressCard";
 import OrderDetails from "../OrderDetails/OrderDetails";
 import './BookStoreCart.css';
@@ -13,30 +13,21 @@ function BookStoreCart() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const cartItems = useSelector((store) => store.cart.cartItems);
-    // const [cartBookList, setCartBookList] = useState([]);
+    console.log(cartItems);
     const [expanded, setExpanded] = useState(false);
     const [expanded2, setExpanded2] = useState(false);
-      const [profile, setProfile] = useState(false);
-    //   const navigate = useNavigate();
-
-    // useEffect(() => {
-    //     const getAllBooksFromCart = async () => {
-    //         let response = await getCartDetailsApiCall();
-    //         setCartBookList(response.data.data.books);
-    //     };
-    //     getAllBooksFromCart();
-    // }, []);
+    const [profile, setProfile] = useState(false);
 
     const placeOrder = () => {
-        if (localStorage.getItem("accessToken")) {
-          setExpanded(true);
+        if (sessionStorage.getItem("accessToken")) {
+            setExpanded(true);
         } else {
-          setProfile(true);
+            setProfile(true);
         }
-        // setExpanded(true);
     };
-    const toOrders = ()=>{
-        navigate('/dashboard/allOrders');
+    
+    const toOrdersSummary = () => {
+        navigate('/dashboard/orderSuccess');
     }
 
     const orderAddress = () => {
@@ -106,13 +97,12 @@ function BookStoreCart() {
                                     cartItems.map((book, index) => (
                                         <OrderDetails key={index} index={-1} book={book} />
                                     ))
-                                )
-                                    : (
-                                        <center><h1 className="cart-empty">Your Cart is Empty! Add any Book to Cart!</h1></center>
-                                    )}
+                                ) : (
+                                    <center><h1 className="cart-empty">Your Cart is Empty! Add any Book to Cart!</h1></center>
+                                )}
                             </div>
                             <div className="cart-checkout">
-                                <Button variant="contained" className="cart-checkout-button" onClick={toOrders}>
+                                <Button variant="contained" className="cart-checkout-button" onClick={toOrdersSummary}>
                                     Checkout
                                 </Button>
                             </div>
@@ -121,11 +111,12 @@ function BookStoreCart() {
                 </Accordion>
             </div>
             <Modal open={profile} onClose={() => setProfile(false)}>
-        <LoginOrSignUp profile={profile} setProfile={setProfile} />
-      </Modal>
+                <Box>
+                    <LoginOrSignUp profile={profile} setProfile={setProfile} />
+                </Box>
+            </Modal>
         </div>
     );
 }
 
 export default BookStoreCart;
-

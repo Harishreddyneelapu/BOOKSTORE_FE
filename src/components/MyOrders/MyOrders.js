@@ -7,10 +7,10 @@ import './MyOrders.css';
 
 function MyOrders() {
     const [orderDetails, setOrderDetails] = useState({ books: [], orderPlacedDate: '' });
-
+    const token = sessionStorage.getItem("accessToken");
     useEffect(() => {
         const getAllOrders = async () => {
-            const response = await getOrderDetailsApiCall();
+            const response = await getOrderDetailsApiCall(token);
             setOrderDetails(response.data.data);
         };
         getAllOrders();
@@ -33,8 +33,8 @@ function MyOrders() {
                 </div>
                 <div className="myorder-list">
                     {orderDetails.books.length ? (
-                        orderDetails.books.map((book) => (
-                            <div key={book._id} className="myorder-item">
+                        orderDetails.books.map((book, index) => (
+                            <div key={`${book._id}-${index}`} className="myorder-item">
                                 <div className="myorder-item-content">
                                     <img src={displayImg} alt={`${book.bookName} Img`} className="myorder-item-image" />
                                     <div className="myorder-item-details">

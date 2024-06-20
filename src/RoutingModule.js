@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import appStore from './utils/store/AppStore';
 import LoginOrSignUp from './components/LoginOrSignUp/LoginOrSignUp';
 import BookNavBar from './components/BookNavBar/BookNavBar';
+import Profile from './components/Profile/Profile';
 
 
 function RoutingModule() {
@@ -23,7 +24,9 @@ function RoutingModule() {
                 { path: "bookCart", element: <BookStoreCart /> },
                 { path: "success", element: <OrderSuccess /> },
                 { path: "allOrders", element: <MyOrders /> },
-                { path: "wishlist", element: <WishList /> }
+                { path: "wishlist", element: <WishList /> },
+                {path: "orderSuccess", element:<OrderSuccess/>},
+                {path:"profile",element:<Profile/>}
 
             ]
         },

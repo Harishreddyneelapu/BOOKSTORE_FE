@@ -1,12 +1,14 @@
 import axios from 'axios';
 
+
 const config = {
-  'Authorization': `Bearer ${localStorage.getItem('accessToken')}`,
+  'Authorization': `Bearer ${sessionStorage.getItem('accessToken')}`,
 }
+
 
 export const getAllBooksApiCall = async () => {
   const res = await axios.get("http://localhost:3000/api/books", { headers: config })
-  return res;
+  return res.data.data;
 }
 
 export const getBookByIdApiCall = async (_id) => {
@@ -14,9 +16,18 @@ export const getBookByIdApiCall = async (_id) => {
   return res;
 }
 
-export const getCartDetailsApiCall = async () => {
-  const res = await axios.get("http://localhost:3000/api/cart", { headers: config });
-  return res;
+export const getCartDetailsApiCall = async (token) => {
+  const res = await axios.get("http://localhost:3000/api/cart", {
+    headers: {
+      'Authorization': `Bearer ${token}`,
+    }
+  });
+  if(res?.data?.data){
+    return res.data.data.books
+  }else{
+    return [];
+  }
+  
 }
 
 export const addCartList = async (_id) => {
@@ -37,14 +48,23 @@ export const getAddressDetailsApiCall = async () => {
   return res;
 }
 
-export const getOrderDetailsApiCall = async () => {
-  const res = await axios.post("http://localhost:3000/api/order", "", { headers: config });
+export const getOrderDetailsApiCall = async (token) => {
+  const res = await axios.post("http://localhost:3000/api/order", "", { headers:  {
+    'Authorization': `Bearer ${token}`,
+  } });
   return res;
 }
 
-export const getWishListDetailsApiCall = async () => {
-  const res = await axios.get("http://localhost:3000/api/wishlist", { headers: config });
-  return res;
+export const getWishListDetailsApiCall = async (token) => {
+  const res = await axios.get("http://localhost:3000/api/wishlist", { headers: {
+    'Authorization': `Bearer ${token}`,
+  } });
+  if(res?.data?.data){
+    return res.data.data.books
+  }else{
+    return [];
+  }
+  
 }
 
 export const addWishList = async (_id) => {

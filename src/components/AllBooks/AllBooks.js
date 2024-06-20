@@ -8,10 +8,31 @@ function AllBooks() {
   const [BookList, setBookList] = useState([]);
   const [sortOption, setSortOption] = useState("");
 
+  const SortPriceLowToHigh = () => {
+    const sortedData = [...BookList].sort(
+      (a, b) => a.discountPrice - b.discountPrice
+    );
+    setBookList(sortedData);
+  };
+  const SortPriceHignToLow = () => {
+    const sortedData = [...BookList].sort(
+      (a, b) => b.discountPrice - a.discountPrice
+    );
+    setBookList(sortedData)
+  };
+  const newArrivals = () => {
+    const sortedData = [...BookList].sort(
+      (a, b) =>
+        Date.parse(b.createdAt) - Date.parse(a.createdAt)
+    );
+    setBookList(sortedData)
+  };
+
   useEffect(() => {
     const getAllBooks = async () => {
       let response = await getAllBooksApiCall();
-      setBookList(response.data.data);
+      // console.log(response);
+      setBookList(response);
     };
     getAllBooks();
   }, []);
@@ -34,9 +55,9 @@ function AllBooks() {
               className="sort-select"
             >
               <MenuItem value={"Sort by relevance"}>Sort by relevance</MenuItem>
-              <MenuItem value={"LowToHigh"}>Price: Low to High</MenuItem>
-              <MenuItem value={"HighToLow"}>Price: High to Low</MenuItem>
-              <MenuItem value={"newArrivals"}>Newest Arrivals</MenuItem>
+              <MenuItem value={"LowToHigh"} onClick={SortPriceLowToHigh}>Price: Low to High</MenuItem>
+              <MenuItem value={"HighToLow"} onClick={SortPriceHignToLow}>Price: High to Low</MenuItem>
+              <MenuItem value={"newArrivals"} onClick={newArrivals}>Newest Arrivals</MenuItem>
             </Select>
           </div>
 

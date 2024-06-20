@@ -1,8 +1,8 @@
-.container {
+.container-login-signup {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 88px;
+    margin-top: 130px;
   }
   
   .inner-container {
@@ -33,7 +33,7 @@
     width:80%
   }
   
-  .logo-text {
+  .logo-text-login-signup {
     font-weight: bold;
     font-size: 16px;
     margin-top: 14px;

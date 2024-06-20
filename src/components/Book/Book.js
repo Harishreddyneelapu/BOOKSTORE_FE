@@ -1,18 +1,32 @@
 import React from 'react';
 import StarIcon from '@mui/icons-material/Star';
 import { Link } from 'react-router-dom';
-import BookImage from '../../assets/bookimage.png'
+import BookImage from '../../assets/bookimage.png';
+import Image1 from '../../assets/Image 7@2x.png';
+import Image2 from '../../assets/Image 10@2x.png';
+import Image3 from '../../assets/Image 11@2x.png';
+import Image4 from '../../assets/Image 12@2x.png';
+import Image5 from '../../assets/Image 13@2x.png';
+import Image6 from '../../assets/Image 14@2x.png';
+import Image7 from '../../assets/Image 18@2x.png';
+import Image8 from '../../assets/Image 23@2x.png';
+
 
 import './Book.css';
 
 function Book({ book }) {
     
+    const ImageList = [Image1,Image2,Image3,Image4,Image5,Image6,Image7,Image8,BookImage]
 
+    const getRandomImage = ()=> {
+        const randomNumber = Math.floor(Math.random() * ImageList.length)
+        return ImageList[randomNumber]
+    }
     return (
         <Link to={`/dashboard/bookView/${book._id}`} className="book-card-link-card">
             <div className="book-card-card">
                 <div className="book-image-container-card">
-                    <img src={BookImage} className="book-image-card" alt={book.bookName} />
+                    <img src={`${getRandomImage()}`} className="book-image-card" alt={book.bookName} />
                 </div>
                 <div className="book-info-card">
                     <span style={{color:'black'}} className="book-name-card">{book.bookName}</span>

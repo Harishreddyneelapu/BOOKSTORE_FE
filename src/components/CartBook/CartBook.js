@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { removeCartList, updateCartList } from "../../services/BookService";
 import { AddCircleOutline, RemoveCircleOutline } from "@mui/icons-material";
 import displayImg from '../../assets/bookimage.png'
@@ -12,20 +12,13 @@ function CartBook({ book, index }) {
     const [quantityToBuy, setQuantityToBuy] = useState(1);
     const cartBook = cartItems.filter((cartbook) => cartbook._id === book._id)[0]
 
-    const token = localStorage.getItem("accessToken")
-
+    const token = sessionStorage.getItem("accessToken")
+    console.log(token);
+    console.log(book);
     const removeItem = async () => {
         const res = await removeCartList(book._id);
         console.log(res);
         dispatch(deleteCartItem(book._id));
-    };
-
-    const decrementQuantity = async () => {
-        // const updateCart = await updateCartList(cartBook._id, quantityToBuy - 1)
-        // console.log(updateCart);
-        dispatch(updateCartQuantity({ ...cartBook, quantityToBuy: quantityToBuy - 1 }))
-
-        setQuantityToBuy(quantityToBuy - 1)
     };
 
     const IncrementQuantity = async () => {
@@ -35,6 +28,18 @@ function CartBook({ book, index }) {
 
         setQuantityToBuy(quantityToBuy + 1)
     };
+
+    const decrementQuantity = async () => {
+        // const updateCart = await updateCartList(cartBook._id, quantityToBuy - 1)
+        // console.log(updateCart);
+        dispatch(updateCartQuantity({ ...cartBook, quantityToBuy: quantityToBuy - 1 }))
+
+        setQuantityToBuy(quantityToBuy - 1)
+    };
+    useEffect(()=>{
+        console.log(cartItems);
+    },[cartItems])
+    
     return (
         <div className="cart-container">
             <div className="cart-book-card">
@@ -54,10 +59,6 @@ function CartBook({ book, index }) {
                                 <RemoveCircleOutline />
                             </button>
                             <div className="cart-book-quantity">{book.quantityToBuy}</div>
-                            <button className="cart-book-btn" onClick={IncrementQuantity} disabled={book.quantityToBuy < book.quantity ? false : true}>
-                                <AddCircleOutline />
-                            </button>
-
                             {token ? (<button className="cart-book-btn" onClick={IncrementQuantity} disabled={book.quantityToBuy < book.quantity ? false : true}>
                                 <AddCircleOutline />
                             </button>) : (<button className="cart-book-btn" onClick={IncrementQuantity} disabled={book.quantityToBuy < book.quantity ? false : true}>

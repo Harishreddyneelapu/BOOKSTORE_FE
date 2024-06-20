@@ -24,35 +24,45 @@ function BookNavBar() {
   // const [email, setEmail] = useState("");
   // const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [accessToken, setAccessToken] = useState(false);
-  const [name, setName] = useState("");
+  // const [accessToken, setAccessToken] = useState(false);
+  // const [name, setName] = useState("");
 
-  const myName = localStorage.getItem("myName");
+  // const myName = localStorage.getItem("myName");
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
+  // const [var, setVar]
+  const accessToken = sessionStorage.getItem("accessToken")?true:false;
   useEffect(() => {
-    getAccessToken();
-  }, []);
-
-  const getAccessToken = () => {
-    const token = localStorage.getItem("accessToken");
-    if (token) {
-      setAccessToken(true);
+    // getAccessToken();
+    if (sessionStorage.getItem("accessToken")) {
+      getCartDetails();
+      wishListDetails();
+      setProfile(false);
     }
-  };
+  }, []);
+  
+  useEffect(()=>{
+    console.log(accessToken);
+  },[accessToken])
+
+  // const getAccessToken = () => {
+  //   const token = sessionStorage.getItem("accessToken");
+  //   if (token) {
+  //     setAccessToken(true);
+  //   }
+  // };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
   const handleLogout = () => {
-    setProfile(true);
-    localStorage.removeItem("accessToken");
+    setProfile(false);
+    sessionStorage.removeItem("accessToken");
   };
 
   const navigateToCart = () => {
@@ -65,56 +75,55 @@ function BookNavBar() {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    fetchBookList();
-  }, []);
+ 
 
   const getCartDetails = async () => {
-    const response = await getCartDetailsApiCall();
-    if (response.length) {
-      setProfile(false);
-      setName(response[0].user_id.fullName);
-      localStorage.setItem("myName", response[0].user_id.fullName);
+    const token = sessionStorage.getItem("accessToken");
+    if (!token) {
+      console.error("No access token found in session storage.");
+      return;
     }
-    const bookList = response.map((cartBook) => ({
-      ...cartBook,
-      bookName: cartBook.product_id.bookName,
-      author: cartBook.product_id.author,
-      price: cartBook.product_id.price,
-      discountPrice: cartBook.product_id.discountPrice,
-      _id: cartBook.product_id._id,
-      cartId: cartBook._id,
-      quantityToBuy: cartBook.quantityToBuy,
-      user_id: cartBook.user_id,
-      quantity: cartBook.product_id.quantity
-    }));
-    dispatch(putCartItem(bookList));
-  };
-
-  const wishListDetails = async () => {
-    const response = await getWishListDetailsApiCall();
-    dispatch(putWishList(response));
-  };
-
-  useEffect(() => {
-    if (localStorage.getItem("accessToken")) {
-      getCartDetails();
-      wishListDetails();
-      setProfile(false);
-    }
-  }, []);
-
-  const fetchBookList = async () => {
     try {
-      const res = await getAllBooksApiCall();
-      //   if (res) {
-      //     dispatch(addItemToBooks(res));
-      //   }
-    } catch (err) {
-      console.error(err);
+      const res = await getCartDetailsApiCall(token);
+      const response = res;
+      console.log(response);
+      if (response.length) {
+        setProfile(false);
+      }
+  
+      const bookList = response.map((cartBook) => ({
+        ...cartBook,
+        bookName: cartBook.bookName,
+        author: cartBook.author,
+        price: cartBook.price,
+        discountPrice: cartBook.discountPrice,
+        _id: cartBook._id,
+        quantityToBuy: cartBook.quantityToBuy,
+        quantity: cartBook.quantity
+      }));
+      dispatch(putCartItem(bookList));
+    } catch (error) {
+      console.error("Failed to get cart details:", error);
     }
   };
+  
+  const wishListDetails = async () => {
+    const token = sessionStorage.getItem("accessToken");
+    if (!token) {
+      console.error("No access token found in session storage.");
+      return;
+    }
+  
+    try {
+      const response = await getWishListDetailsApiCall(token);
+      dispatch(putWishList(response));
+    } catch (error) {
+      console.error("Failed to get wish list details:", error);
+    }
+  };
+  
 
+ 
   return (
     <>
       <div className="nav-bar">
@@ -129,12 +138,12 @@ function BookNavBar() {
         <div className="profile-cart-container">
           {accessToken ? (
             <div className="profile-logged-in" onClick={handleClick}>
-              <PersonOutlineIcon className="profile-icon" />
-              <div className="profile-name">{name}</div>
+              <PersonOutlineIcon className="profile-icon-nav" />
+              <div className="profile-name">Harish</div>
             </div>
           ) : (
             <div className="profile-logged-out" onClick={handleClick}>
-              <PersonOutlineIcon className="profile-icon" />
+              <PersonOutlineIcon className="profile-icon-nav" />
               <span className="profile-text">Profile</span>
             </div>
           )}
@@ -181,7 +190,7 @@ function BookNavBar() {
             anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
           >
             <MenuItem style={{ backgroundColor: "white", fontWeight: "600" }}>
-              Hello {name},
+              Hello Harish,
             </MenuItem>
             <Link to={"/dashboard/profile"}>
               <MenuItem onClick={handleClose}>
@@ -298,7 +307,9 @@ function BookNavBar() {
           open={profile}
           onClose={() => setProfile(false)}
         >
-          <LoginOrSignUp profile={profile} setProfile={setProfile} />
+          <div>
+            <LoginOrSignUp profile={profile} setProfile={setProfile} />
+          </div>
         </Modal>
       </div>
     </>

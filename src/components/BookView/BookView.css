@@ -224,7 +224,7 @@
   border-radius: 5px;
 }
 
-.submit-button {
+.submit-button-view {
   display: flex;
   justify-content: flex-end;
   margin-right: 25px;

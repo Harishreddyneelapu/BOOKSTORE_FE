@@ -8,11 +8,11 @@ import { removeWishlistItem } from "../../services/BookService";
 function WishListCard({ book }) {
 
     const dispatch = useDispatch()
-    // const WishListItems = useSelector((store) => store.wishList.wishListItems);
+    const WishListItems = useSelector((store) => store.wishList.wishListItems);
     
     const removeWishItem = async()=>{
         await removeWishlistItem(book._id)
-        dispatch(deleteWishListItem(book?._id))
+        dispatch(deleteWishListItem(book._id))
     }
     return (
         <div className="wishlistcard-container">

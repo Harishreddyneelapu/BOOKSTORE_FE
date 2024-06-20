@@ -5,7 +5,7 @@ import StarIcon from '@mui/icons-material/Star';
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import BookImage from '../../assets/bookimage.png';
 import { AddCircleOutline, Favorite, RemoveCircleOutline } from '@mui/icons-material';
-import { addCartList, addWishList, getBookByIdApiCall, updateCartList } from '../../services/BookService';
+import {  addWishList, getBookByIdApiCall } from '../../services/BookService';
 import StarOutlinedIcon from "@mui/icons-material/StarOutlined";
 import './BookView.css';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -20,31 +20,31 @@ function BookView() {
     const navigate = useNavigate()
     const [quantityToBuy, setQuantityToBuy] = useState(1);
     const dispatch = useDispatch()
-    const token = localStorage.getItem('accessToken')
-
+    const token = sessionStorage.getItem('accessToken')
+    // console.log(bookData);
     const cartList = useSelector((store) => store.cart.cartItems)
     const wishListList = useSelector((store) => store.wishList.wishListItems)
 
     const BookId = useParams();
     console.log(BookId.bookId);
 
-    const cartId = cartList?.filter((book) => book?._id === BookId.bookId)[0]
-    console.log(cartId);
+    // const cartId = cartList?.filter((book) => book?._id === BookId.bookId)[0]
+    // console.log(cartId);
 
-    const noTokenCartId = cartList?.filter((book) => book?._id === BookId.bookId)[0]
-    console.log(noTokenCartId);
+    // const noTokenCartId = cartList?.filter((book) => book?._id === BookId.bookId)[0]
+    // console.log(noTokenCartId);
 
 
 
-    const wishListId = wishListList?.filter((book) => book?._id === BookId.bookId)[0]
-    console.log(wishListId);
+    // const wishListId = wishListList?.filter((book) => book?._id === BookId.bookId)[0]
+    // console.log(wishListId);
 
     const navigateToBooks = () => {
         navigate("/dashboard/allBooks")
     }
     const addToCart = async () => {
-        const newCartItems = await addCartList(BookId.bookId);
-        console.log(newCartItems)
+        // const newCartItems = await addCartList(BookId.bookId);
+        // console.log(newCartItems)
         dispatch(addItemToCart({ ...bookData, quantityToBuy: 1 }))
         setAddToBag(true)
     };
@@ -61,7 +61,7 @@ function BookView() {
     };
 
     const decrementCartQuantity = async () => {
-        const cartData = cartList.filter((book) => book._id === BookId.bookId)[0]
+        // const cartData = cartList.filter((book) => book._id === BookId.bookId)[0]
         if (quantityToBuy === 1) {
             setAddToBag(false)
             return
@@ -74,7 +74,10 @@ function BookView() {
     };
 
     const handleWishList = () => {
-        addWishList(BookId.bookId);
+        if(token){
+            addWishList(BookId.bookId);
+
+        }
         dispatch(addItemToWishList({ ...bookData }));
         console.log(bookData);
         setWishList(!wishList);
@@ -104,7 +107,7 @@ function BookView() {
         };
         getBooks();
         checkBook(BookId.bookId);
-    }, [BookId.bookId, cartList, cartId, wishList, wishListId]);
+    }, [BookId.bookId]);
     return (
         <div className="container">
             <div className="left-main-book">
@@ -129,10 +132,6 @@ function BookView() {
                                 <IconButton onClick={decrementCartQuantity}>
                                     <RemoveCircleOutline fontSize="medium" />
                                 </IconButton>
-
-                                <div className="cart-quantity">
-                                    {quantityToBuy}
-                                </div>
                                 {token ? (<div className="cart-quantity">
                                     {quantityToBuy}
                                 </div>) : (<div className="cart-quantity">
@@ -214,7 +213,7 @@ function BookView() {
                                     className="comment-input"
                                     placeholder="Write your review"
                                 />
-                                <div className="submit-button">
+                                <div className="submit-button-view">
                                     <Button variant="contained" size="small">
                                         Submit
                                     </Button>
