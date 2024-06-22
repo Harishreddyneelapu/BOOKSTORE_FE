@@ -19,9 +19,6 @@ const LoginOrSignUp = ({ profile, setProfile }) => {
     const dispatch = useDispatch();
     const [emailValidator, setEmailValidator] = useState(false);
     const [passwordValidator, setPasswordValidator] = useState(false);
-    // const [accessToken, setAccessToken] = useState(false)
-    // const navigate = useNavigate()
-
     const cartList = useSelector((store) => store.cart.cartItems)
     const wishListList = useSelector((store)=> store.wishList.wishListItems)
 
@@ -71,11 +68,9 @@ const LoginOrSignUp = ({ profile, setProfile }) => {
 
             const fetchCartList = await getCartDetailsApiCall(res.data.data.token);
             console.log(fetchCartList);
-            // console.log(fetchCartList.data.data);
-
             const fetchWishList = await getWishListDetailsApiCall(res.data.data.token);
             console.log(fetchWishList);
-            // console.log(fetchWishList.books);
+            
 
             if(cartList.length ===0 && fetchCartList.length!==0){
                 for(const item of fetchCartList){
@@ -148,23 +143,8 @@ const LoginOrSignUp = ({ profile, setProfile }) => {
                         }
                     }
                 }
-            // if (fetchCartList.length === 0 && cartList.length !== 0) {
-            //     for (const item of cartList) {
-            //         await addCartList(item._id)
-            //     }
-            // }
-
-            // if (cartList.length !== 0 && fetchCartList.length === 0) {
-            //     for (const item of cartList) {
-            //         const isInFetchCartList = fetchCartList.some((fetchedItem) => fetchedItem._id === item._id);
-            //         if (!isInFetchCartList) {
-            //             await addCartList(item._id);
-            //         }
-            //     }
-            // }
-            // <Link to={"/dashboard/allBooks"}></Link>
+           
             setProfile(false)
-            // navigate("/dashboard/allBooks")
         }
     }
 

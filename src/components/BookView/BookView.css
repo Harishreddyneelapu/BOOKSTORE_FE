@@ -65,17 +65,11 @@
 .add-to-cart {
   background-color: #a03037;
 }
-.wishlist-button{
+.wishlist-button {
   background-color: #373434;
   display: flex;
   align-items: center;
 }
-
-/* .wishlist { */
-  /* background-color: #373434; */
-  /* display: flex; */
-  /* align-items: center; */
-/* } */
 
 .wishlist-icon {
   margin-right: 10px;
@@ -96,7 +90,6 @@
   text-align: center;
   border: 2px solid #ccc;
   border-radius: 5px;
-
 }
 
 .info-section {
@@ -267,4 +260,120 @@
   margin-left: 10px;
   color: #707070;
   margin-top: 0px;
+}
+
+@media (max-width: 575.98px) {
+  .container {
+    width: 95%;
+  }
+
+  .left-main-book, .book-details {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .info-section {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .add-to-cart, .wishlist-button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .container {
+    width: 90%;
+  }
+
+  .left-main-book, .book-details {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-image {
+    width: 80%;
+    height: auto;
+  }
+
+  .info-section {
+    margin-left: 0;
+    margin-top: 20px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .add-to-cart, .wishlist-button {
+    width: 80%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .container {
+    width: 85%;
+  }
+
+  .left-main-book, .book-details {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .main-image {
+    width: 60%;
+    height: auto;
+  }
+
+  .info-section {
+    margin-left: 20px;
+  }
+
+  .actions {
+    flex-direction: row;
+  }
+
+  .add-to-cart, .wishlist-button {
+    width: 45%;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 80%;
+  }
+
+  .left-main-book, .book-details {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .main-image {
+    width: 300px;
+    height: 330px;
+  }
+
+  .info-section {
+    margin-left: 50px;
+  }
+
+  .actions {
+    flex-direction: row;
+  }
+
+  .add-to-cart, .wishlist-button {
+    width: 47%;
+  }
 }

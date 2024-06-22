@@ -1,127 +1,274 @@
 .nav-bar {
-    height:54px;
-    width: 100%;
-    background-color: #A03037;
-    display: flex;
-    align-items: center;
-  }
-  
+  height: 54px;
+  width: 100%;
+  background-color: #A03037;
+  display: flex;
+  align-items: center;
+}
+
+.logo-container {
+  margin-left: 40px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.logo {
+  height: 2rem;
+  width: 2.5rem;
+  margin: 0px 16px 0px 128px;
+}
+
+.logo-text {
+  color: white;
+  font-size: 1.5rem;
+  margin-top: 0px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 6px;
+  padding: 0.25rem;
+  margin-left: 14%;
+  margin-right: 12%;
+  width: 65%;
+}
+
+.search-icon {
+  color: grey;
+  margin-right: 0.5rem;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding: 0.25rem;
+  font-size: 1rem;
+}
+
+.profile-cart-container {
+  display: flex;
+  align-items: center;
+  margin-right: 5rem;
+  gap: 1rem;
+}
+
+.profile-logged-in, .profile-logged-out {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  height: 100%;
+  width: 83px;
+}
+
+.profile-icon-nav {
+  height: 10px;
+  width: 10px;
+  color: white;
+  margin-top: 8px;
+}
+
+.profile-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+  margin-top: 5px;
+}
+
+.profile-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+}
+
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 83px;
+  margin-bottom: 4px;
+}
+
+.cart-icon {
+  height: 20px;
+  width: 25px;
+  color: white;
+  margin-top: 4px;
+}
+
+.cart-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: white;
+}
+
+.menu-divider {
+  width: 95%;
+  height: 2px;
+  margin-top: 5px;
+  background-color: rgba(0, 0, 0, 0.47);
+}
+
+@media (max-width: 575.98px) {
   .logo-container {
-    margin-left: 40px;
-    width: 200px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    cursor: pointer;
+      margin-left: 10px;
+      width: 150px;
   }
-  
+
   .logo {
-    height:2rem;
-    width: 2.5rem;
-    margin: 0px 16px 0px 128px;
+      margin: 0 8px;
   }
-  
+
   .logo-text {
-    color: white;
-    font-size: 1.5rem;
-    margin-top: 0px;
+      font-size: 1rem;
   }
-  
+
   .search-bar {
-    display: flex;
-    align-items: center;
-    background-color: white;
-    border-radius: 6px;
-    padding: 0.25rem;
-    margin-left: 14%;
-    margin-right: 12%;
-    width: 65%;
+      margin-left: 5%;
+      margin-right: 5%;
+      width: 80%;
   }
-  
-  .search-icon {
-    color: grey;
-    margin-right: 0.5rem;
-  }
-  
-  .search-input {
-    border: none;
-    outline: none;
-    width: 100%;
-    padding: 0.25rem;
-    font-size: 1rem;
-  }
-  
+
   .profile-cart-container {
-    /* display: flex;
-    margin-left: auto;
-    margin-right: 8rem; */
-    display: flex;
-    align-items: center;
-    margin-right: 5rem;
-    gap: 1rem;
+      margin-right: 1rem;
+      gap: 0.5rem;
   }
-  
-  .profile-logged-in, .profile-logged-out {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    height: 100%;
-    width: 83px;
-    /* border-left: 1px solid #891a21; */
-    /* border-right: 1px solid #891a21; */
+
+  .profile-logged-in, .profile-logged-out, .cart-container {
+      width: 70px;
   }
-  
-  .profile-icon-nav {
-    height: 10px;
-    width: 10px;
-    color: white;
-    margin-top: 8px;
+
+  .profile-name, .profile-text, .cart-text {
+      font-size: 12px;
   }
-  
-  .profile-name {
-    font-size: 14px;
-    font-weight: 500;
-    color: white;
-    margin-top: 5px;
-  }
-  
-  .profile-text {
-    font-size: 14px;
-    font-weight: 500;
-    color: white;
-    /* margin-top: 5px; */
-  }
-  
-  .cart-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    width: 83px;
-    /* border-right: 1px solid #891a21; */
-    margin-bottom: 4px;
-  }
-  
+
   .cart-icon {
-    height: 20px;
-    width: 25px;
-    color: white;
-    margin-top: 4px;
+      height: 18px;
+      width: 22px;
   }
-  
-  .cart-text {
-    font-size: 14px;
-    font-weight: 500;
-    color: white;
-    /* margin-top: 2px; */
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .logo-container {
+      margin-left: 20px;
+      width: 180px;
   }
-  
-  .menu-divider {
-    width: 95%;
-    height: 2px;
-    margin-top: 5px;
-    background-color: rgba(0, 0, 0, 0.47);
+
+  .logo {
+      margin: 0 12px;
   }
-  
+
+  .logo-text {
+      font-size: 1.2rem;
+  }
+
+  .search-bar {
+      margin-left: 10%;
+      margin-right: 10%;
+      width: 75%;
+  }
+
+  .profile-cart-container {
+      margin-right: 2rem;
+      gap: 0.75rem;
+  }
+
+  .profile-logged-in, .profile-logged-out, .cart-container {
+      width: 75px;
+  }
+
+  .profile-name, .profile-text, .cart-text {
+      font-size: 13px;
+  }
+
+  .cart-icon {
+      height: 18px;
+      width: 23px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .logo-container {
+      margin-left: 30px;
+      width: 190px;
+  }
+
+  .logo {
+      margin: 0 14px;
+  }
+
+  .logo-text {
+      font-size: 1.3rem;
+  }
+
+  .search-bar {
+      margin-left: 12%;
+      margin-right: 10%;
+      width: 70%;
+  }
+
+  .profile-cart-container {
+      margin-right: 3rem;
+      gap: 0.75rem;
+  }
+
+  .profile-logged-in, .profile-logged-out, .cart-container {
+      width: 80px;
+  }
+
+  .profile-name, .profile-text, .cart-text {
+      font-size: 14px;
+  }
+
+  .cart-icon {
+      height: 19px;
+      width: 24px;
+  }
+}
+
+@media (min-width: 992px) {
+  .logo-container {
+      margin-left: 40px;
+      width: 200px;
+  }
+
+  .logo {
+      margin: 0 16px;
+  }
+
+  .logo-text {
+      font-size: 1.5rem;
+  }
+
+  .search-bar {
+      margin-left: 14%;
+      margin-right: 12%;
+      width: 65%;
+  }
+
+  .profile-cart-container {
+      margin-right: 5rem;
+      gap: 1rem;
+  }
+
+  .profile-logged-in, .profile-logged-out, .cart-container {
+      width: 83px;
+  }
+
+  .profile-name, .profile-text, .cart-text {
+      font-size: 14px;
+  }
+
+  .cart-icon {
+      height: 20px;
+      width: 25px;
+  }
+}

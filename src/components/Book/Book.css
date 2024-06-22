@@ -1,4 +1,3 @@
-
 .book-card-link-card {
     text-decoration: none;
 }
@@ -81,7 +80,7 @@
 
 .discount-price-card {
     font-size: 13px;
-    font-weight:700;
+    font-weight: 700;
     color: black;
     filter: brightness(75%) contrast(75%);
 }
@@ -90,4 +89,192 @@
     font-size: 11px;
     color: gray;
     text-decoration: line-through;
+}
+
+@media (max-width: 575.98px) {
+    .book-card-card {
+        height: 200px;
+        width: 160px;
+    }
+
+    .book-image-card {
+        width: 60%;
+        height: 75%;
+    }
+
+    .book-info-card {
+        margin-left: 5%;
+        margin-top: 1%;
+        gap: 1px;
+    }
+
+    .book-name-card {
+        font-size: 12px;
+    }
+
+    .book-author-card {
+        font-size: 9px;
+    }
+
+    .rating-box-card {
+        height: 14px;
+        width: 30px;
+    }
+
+    .rating-value-card {
+        font-size: 9px;
+    }
+
+    .book-quantity-card {
+        font-size: 9px;
+    }
+
+    .discount-price-card {
+        font-size: 11px;
+    }
+
+    .original-price-card {
+        font-size: 9px;
+    }
+}
+
+@media (min-width: 576px) and (max-width: 767.98px) {
+    .book-card-card {
+        height: 220px;
+        width: 180px;
+    }
+
+    .book-image-card {
+        width: 55%;
+        height: 80%;
+    }
+
+    .book-info-card {
+        margin-left: 7%;
+        margin-top: 1.5%;
+        gap: 1.5px;
+    }
+
+    .book-name-card {
+        font-size: 13px;
+    }
+
+    .book-author-card {
+        font-size: 9.5px;
+    }
+
+    .rating-box-card {
+        height: 15px;
+        width: 32px;
+    }
+
+    .rating-value-card {
+        font-size: 10px;
+    }
+
+    .book-quantity-card {
+        font-size: 10px;
+    }
+
+    .discount-price-card {
+        font-size: 12px;
+    }
+
+    .original-price-card {
+        font-size: 10px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .book-card-card {
+        height: 240px;
+        width: 200px;
+    }
+
+    .book-image-card {
+        width: 50%;
+        height: 85%;
+    }
+
+    .book-info-card {
+        margin-left: 8%;
+        margin-top: 1.8%;
+        gap: 2px;
+    }
+
+    .book-name-card {
+        font-size: 14px;
+    }
+
+    .book-author-card {
+        font-size: 10px;
+    }
+
+    .rating-box-card {
+        height: 16px;
+        width: 33px;
+    }
+
+    .rating-value-card {
+        font-size: 11px;
+    }
+
+    .book-quantity-card {
+        font-size: 11px;
+    }
+
+    .discount-price-card {
+        font-size: 13px;
+    }
+
+    .original-price-card {
+        font-size: 11px;
+    }
+}
+
+@media (min-width: 992px) {
+    .book-card-card {
+        height: 255px;
+        width: 210px;
+    }
+
+    .book-image-card {
+        width: 50%;
+        height: 85%;
+    }
+
+    .book-info-card {
+        margin-left: 10%;
+        margin-top: 2%;
+        gap: 2px;
+    }
+
+    .book-name-card {
+        font-size: 14px;
+    }
+
+    .book-author-card {
+        font-size: 10px;
+    }
+
+    .rating-box-card {
+        height: 16px;
+        width: 33px;
+    }
+
+    .rating-value-card {
+        font-size: 11px;
+    }
+
+    .book-quantity-card {
+        font-size: 11px;
+    }
+
+    .discount-price-card {
+        font-size: 13px;
+    }
+
+    .original-price-card {
+        font-size: 11px;
+    }
 }

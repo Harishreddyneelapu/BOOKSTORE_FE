@@ -3,44 +3,36 @@ import SearchIcon from '@mui/icons-material/Search';
 import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useDispatch } from 'react-redux';
-// import { addItemToBooks } from '../utils/store/BookSlice';
-import { getAllBooksApiCall, getCartDetailsApiCall, getWishListDetailsApiCall } from '../../services/BookService';
+import {  getCartDetailsApiCall, getOrderDetailsApiCall, getWishListDetailsApiCall } from '../../services/BookService';
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Modal from '@mui/material/Modal';
 import { Avatar, Button, ListItemIcon, Menu, MenuItem } from '@mui/material';
-// import Logo from '../assets/shoppingCart.png';
-// import { createUser, loginUser } from '../utils/UserService';
 import { MarkunreadMailboxOutlined, FavoriteBorder } from '@mui/icons-material';
 import React from 'react';
 import { putCartItem } from '../../utils/store/CartSlice';
 import { putWishList } from '../../utils/store/WishListSlice';
 import LoginOrSignUp from '../LoginOrSignUp/LoginOrSignUp';
 import './BookNavBar.css';
+import OrderDetails from '../OrderDetails/OrderDetails';
+import { setLoaded } from '../../utils/store/OrderSlice';
 
 function BookNavBar() {
   const navigate = useNavigate();
   const [profile, setProfile] = useState(false);
-  // const [email, setEmail] = useState("");
-  // const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  // const [accessToken, setAccessToken] = useState(false);
-  // const [name, setName] = useState("");
-
-  // const myName = localStorage.getItem("myName");
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  // const [var, setVar]
   const accessToken = sessionStorage.getItem("accessToken")?true:false;
   useEffect(() => {
-    // getAccessToken();
     if (sessionStorage.getItem("accessToken")) {
       getCartDetails();
       wishListDetails();
+      // getOrderDetails();
       setProfile(false);
     }
   }, []);
@@ -49,13 +41,7 @@ function BookNavBar() {
     console.log(accessToken);
   },[accessToken])
 
-  // const getAccessToken = () => {
-  //   const token = sessionStorage.getItem("accessToken");
-  //   if (token) {
-  //     setAccessToken(true);
-  //   }
-  // };
-
+ 
   const handleClose = () => {
     setAnchorEl(null);
   };
@@ -122,7 +108,19 @@ function BookNavBar() {
     }
   };
   
-
+  // const getOrderDetails = async ()=>{
+  //   const token = sessionStorage.getItem("accessToken");
+  //   if (!token) {
+  //     console.error("No access token found in session storage.");
+  //     return;
+  //   }
+  //   try{
+  //     const response = await getOrderDetailsApiCall(token);
+  //     dispatch(setLoaded(response))
+  //   }catch(error){
+  //     console.error("Failed to get order details:", error);
+  //   }
+  // }
  
   return (
     <>
@@ -290,11 +288,11 @@ function BookNavBar() {
                 className="menu-divider"
               ></span>
             </MenuItem>
-            <Link to={"/dashboard/allOrders"}>
+            {/* <Link to={"/dashboard/allOrders"}>
               <MenuItem style={{ color: "#878787" }}>
                 My Orders
               </MenuItem>
-            </Link>
+            </Link> */}
             <Link to={"/dashboard/wishList"}>
               <MenuItem style={{ color: "#878787" }}>
                 WishList

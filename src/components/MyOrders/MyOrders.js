@@ -11,9 +11,11 @@ function MyOrders() {
     useEffect(() => {
         const getAllOrders = async () => {
             const response = await getOrderDetailsApiCall(token);
-            setOrderDetails(response.data.data);
+            setOrderDetails(response);
         };
-        getAllOrders();
+        if(token){
+            getAllOrders();
+        }
     }, []);
 
     const formatOrderDate = (dateString) => {
@@ -32,7 +34,7 @@ function MyOrders() {
                     <span> My Orders</span>
                 </div>
                 <div className="myorder-list">
-                    {orderDetails.books.length ? (
+                    {orderDetails.books ? (
                         orderDetails.books.map((book, index) => (
                             <div key={`${book._id}-${index}`} className="myorder-item">
                                 <div className="myorder-item-content">

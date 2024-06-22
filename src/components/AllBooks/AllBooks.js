@@ -31,7 +31,6 @@ function AllBooks() {
   useEffect(() => {
     const getAllBooks = async () => {
       let response = await getAllBooksApiCall();
-      // console.log(response);
       setBookList(response);
     };
     getAllBooks();

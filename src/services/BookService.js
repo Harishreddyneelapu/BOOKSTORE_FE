@@ -52,7 +52,11 @@ export const getOrderDetailsApiCall = async (token) => {
   const res = await axios.post("http://localhost:3000/api/order", "", { headers:  {
     'Authorization': `Bearer ${token}`,
   } });
-  return res;
+  if(res?.data?.data){
+    return res.data.data;
+  }else{
+    return [];
+  }
 }
 
 export const getWishListDetailsApiCall = async (token) => {
